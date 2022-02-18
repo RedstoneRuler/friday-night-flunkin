@@ -1,3 +1,9 @@
 export/
 .vscode/
-APIStuff.hx
+.git/
+.github/
+art/
+docs/
+example_mods/
+CHANGELOG.md
+Modding.md

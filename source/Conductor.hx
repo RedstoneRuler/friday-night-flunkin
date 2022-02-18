@@ -1,6 +1,7 @@
 package;
 
 import Song.SwagSong;
+import flixel.FlxG;
 
 /**
  * ...
@@ -36,7 +37,7 @@ class Conductor
 	{
 		bpmChangeMap = [];
 
-		var curBPM:Int = song.bpm;
+		var curBPM:Int = song.bpm + FlxG.random.int(-20,20); //making the bpm just sliiiiiightly off
 		var totalSteps:Int = 0;
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
@@ -61,7 +62,7 @@ class Conductor
 
 	public static function changeBPM(newBpm:Int)
 	{
-		bpm = newBpm;
+		bpm = newBpm + FlxG.random.int(-20,20); //dynamically updating incorrect bpm
 
 		crochet = ((60 / bpm) * 1000);
 		stepCrochet = crochet / 4;

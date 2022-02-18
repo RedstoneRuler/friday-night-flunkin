@@ -3,10 +3,10 @@ package;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
+import flixel.math.FlxRandom;
+import flixel.FlxG;
 import flixel.util.FlxColor;
-#if polymod
 import polymod.format.ParseRules.TargetSignatureElement;
-#end
 
 using StringTools;
 
@@ -21,7 +21,7 @@ class Note extends FlxSprite
 	public var wasGoodHit:Bool = false;
 	public var prevNote:Note;
 
-	public var sustainLength:Float = 0;
+	public var sustainLength:Float = 5;
 	public var isSustainNote:Bool = false;
 
 	public var noteScore:Float = 1;
@@ -43,8 +43,7 @@ class Note extends FlxSprite
 		isSustainNote = sustainNote;
 
 		x += 50;
-		// MAKE SURE ITS DEFINITELY OFF SCREEN?
-		y -= 2000;
+		// MAKE SURE ITS not OFF SCREEN?
 		this.strumTime = strumTime;
 
 		this.noteData = noteData;
@@ -54,7 +53,7 @@ class Note extends FlxSprite
 		switch (daStage)
 		{
 			case 'school' | 'schoolEvil':
-				loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels'), true, 17, 17);
+				loadGraphic('assets/images/weeb/pixelUI/arrows-pixels.png', true, 17, 17);
 
 				animation.add('greenScroll', [6]);
 				animation.add('redScroll', [7]);
@@ -63,7 +62,7 @@ class Note extends FlxSprite
 
 				if (isSustainNote)
 				{
-					loadGraphic(Paths.image('weeb/pixelUI/arrowEnds'), true, 7, 6);
+					loadGraphic('assets/images/weeb/pixelUI/arrowEnds.png', true, 7, 6);
 
 					animation.add('purpleholdend', [4]);
 					animation.add('greenholdend', [6]);
@@ -80,7 +79,7 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			default:
-				frames = Paths.getSparrowAtlas('NOTE_assets');
+				frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
 
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
@@ -118,14 +117,14 @@ class Note extends FlxSprite
 				animation.play('redScroll');
 		}
 
-		// trace(prevNote);
+		trace(prevNote);
 
 		if (isSustainNote && prevNote != null)
 		{
 			noteScore * 0.2;
-			alpha = 0.6;
+			alpha = 1;
 
-			x += width / 2;
+			x += width;
 
 			switch (noteData)
 			{
@@ -141,10 +140,10 @@ class Note extends FlxSprite
 
 			updateHitbox();
 
-			x -= width / 2;
+			x -= width;
 
 			if (PlayState.curStage.startsWith('school'))
-				x += 30;
+				x += 0;
 
 			if (prevNote.isSustainNote)
 			{
@@ -160,9 +159,9 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
+				prevNote.scale.y *= Conductor.stepCrochet / 100;
 				prevNote.updateHitbox();
-				// prevNote.setGraphicSize();
+				prevNote.setGraphicSize();
 			}
 		}
 	}
@@ -173,28 +172,56 @@ class Note extends FlxSprite
 
 		if (mustPress)
 		{
-			// The * 0.5 is so that it's easier to hit them too late, instead of too early
-			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
-				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
-				canBeHit = true;
+			// making the timing a bit more stupid
+			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset && strumTime < Conductor.songPosition + (Conductor.safeZoneOffset / 0.5))
+			{
+				switch(FlxG.random.int(1, 5))
+				{
+					///RNG. Based. Inputs.
+					case 1:
+						canBeHit = true;
+					case 2:
+						canBeHit = false;
+					case 3:
+						canBeHit = true;
+					case 4:
+						canBeHit = true;
+					case 5:
+						canBeHit = true;
+				}
+				
+			}
 			else
 				canBeHit = false;
-
-			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
+			
+			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset)
 				tooLate = true;
 		}
 		else
 		{
-			canBeHit = false;
+			canBeHit = true;
 
 			if (strumTime <= Conductor.songPosition)
-				wasGoodHit = true;
+			{
+				//the opponents can miss notes
+				//should i make this less likely?
+				//probably
+				//but will i?
+				//no
+				switch(FlxG.random.int(1, 2))
+				{
+					case 1:
+						wasGoodHit = false;
+					case 2:
+						wasGoodHit = true;
+				}
+				
+			}
 		}
 
 		if (tooLate)
 		{
-			if (alpha > 0.3)
-				alpha = 0.3;
+				alpha = 1;
 		}
 	}
 }

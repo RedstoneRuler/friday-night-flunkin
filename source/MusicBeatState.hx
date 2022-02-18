@@ -24,6 +24,10 @@ class MusicBeatState extends FlxUIState
 		if (transIn != null)
 			trace('reg ' + transIn.region);
 
+		#if (!web)
+		TitleState.soundExt = '.ogg';
+		#end
+
 		super.create();
 	}
 
