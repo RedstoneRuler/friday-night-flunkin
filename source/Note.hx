@@ -42,7 +42,6 @@ class Note extends FlxSprite
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 
-		x += 50;
 		// MAKE SURE ITS not OFF SCREEN?
 		this.strumTime = strumTime;
 
@@ -75,7 +74,7 @@ class Note extends FlxSprite
 					animation.add('bluehold', [1]);
 				}
 
-				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
+				setGraphicSize(Std.int(width * PlayState.daPixelZoom) + FlxG.random.int(-20, 20));
 				updateHitbox();
 
 			default:
@@ -96,7 +95,7 @@ class Note extends FlxSprite
 				animation.addByPrefix('redhold', 'red hold piece');
 				animation.addByPrefix('bluehold', 'blue hold piece');
 
-				setGraphicSize(Std.int(width * 0.7));
+				setGraphicSize(Std.int(width * 0.7) + FlxG.random.int(-20, 20));
 				updateHitbox();
 				antialiasing = true;
 		}
@@ -159,7 +158,6 @@ class Note extends FlxSprite
 						prevNote.animation.play('redhold');
 				}
 
-				prevNote.scale.y *= Conductor.stepCrochet / 100;
 				prevNote.updateHitbox();
 				prevNote.setGraphicSize();
 			}
@@ -173,7 +171,7 @@ class Note extends FlxSprite
 		if (mustPress)
 		{
 			// making the timing a bit more stupid
-			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset && strumTime < Conductor.songPosition + (Conductor.safeZoneOffset / 0.5))
+			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset && strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * FlxG.random.float(0.01, 3)))
 			{
 				switch(FlxG.random.int(1, 5))
 				{

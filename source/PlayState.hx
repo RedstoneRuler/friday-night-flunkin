@@ -1106,7 +1106,7 @@ class PlayState extends MusicBeatState
 					babyArrow.animation.add('blue', [5]);
 					babyArrow.animation.add('purplel', [4]);
 
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * daPixelZoom));
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * daPixelZoom) + FlxG.random.int(-10, 10));
 					babyArrow.updateHitbox();
 					babyArrow.antialiasing = false;
 
@@ -1142,7 +1142,7 @@ class PlayState extends MusicBeatState
 					babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
 					babyArrow.antialiasing = true;
-					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
+					babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7) + FlxG.random.int(-10, 10));
 
 					switch (Math.abs(i))
 					{

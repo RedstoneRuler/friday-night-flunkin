@@ -120,7 +120,7 @@ class MainMenuState extends MusicBeatState
 			if (controls.DOWN_P)
 			{
 				FlxG.sound.play('assets/sounds/scrollMenu' + TitleState.soundExt);
-				changeItem(-1);
+				changeItem(-2);
 			}
 
 			if (controls.BACK)
