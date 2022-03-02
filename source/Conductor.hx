@@ -63,7 +63,7 @@ class Conductor
 	public static function changeBPM(newBpm:Int)
 	{
 		bpm = newBpm + FlxG.random.int(-20,20); //dynamically updating incorrect bpm
-
+		FlxG.log.add("fucked with bpm lmao");
 		crochet = ((60 / bpm) * 1000);
 		stepCrochet = crochet / 4;
 	}

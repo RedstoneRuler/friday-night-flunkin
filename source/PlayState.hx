@@ -167,7 +167,7 @@ class PlayState extends MusicBeatState
 			case 'senpai':
 				dialogue = [
 					":dad:hey pretty girl",
-					":dad:wanna be legally adopted",
+					":dad:wanna be illegally adopted",
 					":bf:what"
 				];
 			case 'roses':

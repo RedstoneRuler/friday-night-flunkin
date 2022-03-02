@@ -622,13 +622,15 @@ class Character extends FlxSprite
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
 		animation.play(AnimName, Force, Reversed, Frame);
-
+		/*
 		var daOffset = animOffsets.get(animation.curAnim.name);
 		if (animOffsets.exists(animation.curAnim.name))
 		{
 			offset.set(daOffset[0], daOffset[1]);
 		}
 		else
+		*/
+		//who needed offsets anyway
 			offset.set(0, 0);
 
 		if (curCharacter == 'gf')
