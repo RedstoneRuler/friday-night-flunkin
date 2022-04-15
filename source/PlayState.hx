@@ -1889,51 +1889,14 @@ class PlayState extends MusicBeatState
 				}
 			});
 
-			if (possibleNotes.length > 0)
+			if (possibleNotes.length > 0 && FlxG.random.bool(50))
 			{
 				var daNote = possibleNotes[0];
 
 				if (perfectMode)
 					noteCheck(true, daNote);
 
-				// Jump notes
-				if (possibleNotes.length >= 2)
-				{
-					if (possibleNotes[0].strumTime == possibleNotes[1].strumTime)
-					{
-						for (coolNote in possibleNotes)
-						{
-							if (controlArray[coolNote.noteData])
-								goodNoteHit(coolNote);
-							else
-							{
-								var inIgnoreList:Bool = false;
-								for (shit in 0...ignoreList.length)
-								{
-									if (controlArray[ignoreList[shit]])
-										inIgnoreList = true;
-								}
-								if (!inIgnoreList)
-									badNoteCheck();
-							}
-						}
-					}
-					else if (possibleNotes[0].noteData == possibleNotes[1].noteData)
-					{
-						noteCheck(controlArray[daNote.noteData], daNote);
-					}
-					else
-					{
-						for (coolNote in possibleNotes)
-						{
-							noteCheck(controlArray[coolNote.noteData], coolNote);
-						}
-					}
-				}
-				else // regular notes?
-				{
 					noteCheck(controlArray[daNote.noteData], daNote);
-				}
 				/* 
 					if (controlArray[daNote.noteData])
 						goodNoteHit(daNote);
@@ -1958,9 +1921,10 @@ class PlayState extends MusicBeatState
 				 */
 				if (daNote.wasGoodHit)
 				{
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
+					if(FlxG.random.bool(50) = true)
+						daNote.kill();
+						notes.remove(daNote, true);
+						daNote.destroy();
 				}
 			}
 			else

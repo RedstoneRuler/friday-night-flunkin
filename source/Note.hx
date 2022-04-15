@@ -173,21 +173,10 @@ class Note extends FlxSprite
 			// making the timing a bit more stupid
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset && strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * FlxG.random.float(0.01, 3)))
 			{
-				switch(FlxG.random.int(1, 5))
-				{
-					///RNG. Based. Inputs.
-					case 1:
-						canBeHit = true;
-					case 2:
-						canBeHit = false;
-					case 3:
-						canBeHit = true;
-					case 4:
-						canBeHit = true;
-					case 5:
-						canBeHit = true;
-				}
-				
+				if(FlxG.random.int(1, 5) == 1)
+					canBeHit = false;
+				else
+					canBeHit = true;
 			}
 			else
 				canBeHit = false;
