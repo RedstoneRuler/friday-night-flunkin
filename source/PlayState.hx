@@ -1889,7 +1889,7 @@ class PlayState extends MusicBeatState
 				}
 			});
 
-			if (possibleNotes.length > 0 && FlxG.random.bool(15) == false)
+			if (possibleNotes.length > 0 && FlxG.random.bool(2) == false)
 			{
 				var daNote = possibleNotes[0];
 
@@ -1921,7 +1921,7 @@ class PlayState extends MusicBeatState
 				 */
 				if (daNote.wasGoodHit)
 				{
-					if(FlxG.random.bool(15) == false)
+					if(FlxG.random.bool(2) == false)
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
