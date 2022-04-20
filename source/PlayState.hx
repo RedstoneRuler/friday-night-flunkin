@@ -1921,7 +1921,7 @@ class PlayState extends MusicBeatState
 				 */
 				if (daNote.wasGoodHit)
 				{
-					if(FlxG.random.bool(50) = true)
+					if(FlxG.random.bool(50) == true)
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
