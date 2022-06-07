@@ -188,6 +188,7 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.screenCenter(X);
+			spr.x += FlxG.random.int(-5,5);
 		});
 	}
 
@@ -203,7 +204,6 @@ class MainMenuState extends MusicBeatState
 		menuItems.forEach(function(spr:FlxSprite)
 		{
 			spr.animation.play('idle');
-
 			if (spr.ID == curSelected)
 			{
 				spr.animation.play('selected');
