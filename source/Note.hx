@@ -31,6 +31,8 @@ class Note extends FlxSprite
 	public static var GREEN_NOTE:Int = 2;
 	public static var BLUE_NOTE:Int = 1;
 	public static var RED_NOTE:Int = 3;
+	
+	var daStage:String = PlayState.curStage;
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
@@ -47,7 +49,6 @@ class Note extends FlxSprite
 
 		this.noteData = noteData;
 
-		var daStage:String = PlayState.curStage;
 
 		switch (daStage)
 		{
@@ -167,7 +168,8 @@ class Note extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
+		angle = FlxG.random.float(0, 360);
+			
 		if (mustPress)
 		{
 			// making the timing a bit more stupid
