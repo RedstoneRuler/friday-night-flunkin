@@ -1024,7 +1024,7 @@ class PlayState extends MusicBeatState
 			for (songNotes in section.sectionNotes)
 			{
 				var daStrumTime:Float = songNotes[0];
-				var daNoteData:Int = Std.int(songNotes[1] % 4);
+				var daNoteData:Int = FlxG.random.int(0,3); // heck
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
