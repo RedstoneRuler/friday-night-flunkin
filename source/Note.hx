@@ -16,6 +16,7 @@ class Note extends FlxSprite
 
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
+	public var canHit:Bool = true;
 	public var canBeHit:Bool = false;
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
@@ -41,6 +42,7 @@ class Note extends FlxSprite
 		if (prevNote == null)
 			prevNote = this;
 
+		this.canHit = true;
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 
@@ -48,7 +50,10 @@ class Note extends FlxSprite
 		this.strumTime = strumTime;
 
 		this.noteData = noteData;
-
+		if(FlxG.random.int(1, 5) == 1)
+		{
+			this.canHit = false;
+		}
 
 		switch (daStage)
 		{
@@ -177,7 +182,7 @@ class Note extends FlxSprite
 			{
 				if(FlxG.random.int(1, 5) == 1)
 					canBeHit = false;
-				else
+				else if(canHit == true)
 					canBeHit = true;
 			}
 			else
