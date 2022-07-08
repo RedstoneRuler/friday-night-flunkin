@@ -4,7 +4,7 @@ my old friend--garbage input system
 how low can you go--im talking to the framerate
 wanna work on my--fnf mod
 this is a--disaster
-curWacky0--curWacky1
+curWacky[0]--curWacky[1]
 official engine for vs john--sorry not sorry
 gamaverse--is better than kbhgames
 bible man--is watching you masturbate
