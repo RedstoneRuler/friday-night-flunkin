@@ -1249,8 +1249,8 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		//FlxG.updateFramerate = FlxG.random.int(10,30);
-		//FlxG.drawFramerate = FlxG.updateFramerate;
+		FlxG.updateFramerate = FlxG.random.int(10,30);
+		FlxG.drawFramerate = FlxG.updateFramerate;
 		#if !debug
 		perfectMode = false;
 		#end
