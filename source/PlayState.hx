@@ -1,5 +1,5 @@
 package;
-
+import openfl.Lib;
 import Section.SwagSection;
 import Song.SwagSong;
 import WiggleEffect.WiggleEffectType;
@@ -174,7 +174,7 @@ class PlayState extends MusicBeatState
 			dialogue = [
 				":dad:why won't you date me",
 				":bf:i am literally standing right here",
-				":dad:184:381:2:62"
+				":dad:184:216:2:62"
 			];
 			case 'thorns':
 				dialogue = [
@@ -1249,8 +1249,20 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		FlxG.updateFramerate = FlxG.random.int(10,30);
-		FlxG.drawFramerate = FlxG.updateFramerate;
+		switch(FlxG.random.int(0, 30)) {
+			case 0:
+				FlxG.camera.angle = FlxG.random.int(-45, 45);
+			case 1:
+				FlxG.updateFramerate = FlxG.random.int(10, 50);
+				FlxG.drawFramerate = FlxG.updateFramerate;
+			case 2:
+				healthBar.setPosition(FlxG.random.int(-FlxG.width, FlxG.width), FlxG.random.int(-FlxG.height, FlxG.height));
+			case 3:
+				scoreTxt.setPosition(FlxG.random.int(-FlxG.width, FlxG.width), FlxG.random.int(-FlxG.height, FlxG.height));
+			case 4:
+				camHUD.angle = FlxG.random.int(-25, 25);
+		}
+
 		#if !debug
 		perfectMode = false;
 		#end
@@ -1279,7 +1291,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore;
+		scoreTxt.text = "Score:" + (songScore + FlxG.random.int(-99999, 99999));
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1309,18 +1321,8 @@ class PlayState extends MusicBeatState
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - iconOffset);
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
 
-		if (health > 2)
-			health = 2;
-
-		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
-		else
-			iconP1.animation.curAnim.curFrame = 0;
-
-		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
-		else
-			iconP2.animation.curAnim.curFrame = 0;
+		iconP1.animation.curAnim.curFrame = 0;
+		iconP2.animation.curAnim.curFrame = 0;
 
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
@@ -1828,7 +1830,7 @@ class PlayState extends MusicBeatState
 		 */
 
 		coolText.text = Std.string(seperatedScore);
-		// add(coolText);
+		add(coolText);
 
 		FlxTween.tween(rating, {alpha: 0}, 0.2, {
 			startDelay: Conductor.crochet * 0.001
@@ -1897,12 +1899,11 @@ class PlayState extends MusicBeatState
 					noteCheck(true, daNote);
 
 					noteCheck(controlArray[daNote.noteData], daNote);
-				/* 
+
 					if (controlArray[daNote.noteData])
 						goodNoteHit(daNote);
-				 */
-				// trace(daNote.noteData);
-				/* 
+					//uncommenting all this code 😎
+					trace(daNote.noteData);
 					switch (daNote.noteData)
 					{
 						case 2: // NOTES YOU JUST PRESSED
@@ -1918,7 +1919,6 @@ class PlayState extends MusicBeatState
 							if (upP || rightP || downP || leftP)
 								noteCheck(leftP, daNote);
 					}
-				 */
 				if (daNote.wasGoodHit)
 				{
 					if(FlxG.random.bool(2) == false)
