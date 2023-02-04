@@ -1,6 +1,6 @@
 # Friday Night Flunkin'
 
-The only FNF engine that prides itself in being terrible™
+The only FNF engine that prides itself in being terrible
 
 ## Credits
 - [RedstoneRuler](https://twitter.com/redstoneruler2) - Did literally everything
@@ -9,3 +9,6 @@ The only FNF engine that prides itself in being terrible™
 - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art/Animation
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
+
+## Please Note
+If you're confused about the contributors and commits, this was originally a fork before I made it into its own standalone repository.
