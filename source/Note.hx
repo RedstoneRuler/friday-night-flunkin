@@ -180,7 +180,7 @@ class Note extends FlxSprite
 			// making the timing a bit more stupid
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset && strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * FlxG.random.float(0.01, 3)))
 			{
-				if(FlxG.random.int(1, 5) == 1)
+				if(FlxG.random.int(1, 5) == 1 || canHit == false)
 					canBeHit = false;
 				else if(canHit == true)
 					canBeHit = true;
