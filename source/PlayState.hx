@@ -1256,9 +1256,9 @@ class PlayState extends MusicBeatState
 				FlxG.updateFramerate = FlxG.random.int(10, 50);
 				FlxG.drawFramerate = FlxG.updateFramerate;
 			case 2:
-				healthBar.setPosition(FlxG.random.int(-FlxG.width, FlxG.width), FlxG.random.int(-FlxG.height, FlxG.height));
+				healthBar.setPosition(FlxG.random.int(0, FlxG.width), FlxG.random.int(0, FlxG.height));
 			case 3:
-				scoreTxt.setPosition(FlxG.random.int(-FlxG.width, FlxG.width), FlxG.random.int(-FlxG.height, FlxG.height));
+				scoreTxt.setPosition(FlxG.random.int(0, FlxG.width), FlxG.random.int(0, FlxG.height));
 			case 4:
 				camHUD.angle = FlxG.random.int(-25, 25);
 		}
